@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproducir Música</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        img {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.05);
+        }
+        
+        #audioPlayer {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/emvelar/musica-boda/main/21disco.png" 
+             id="miImagen" 
+             alt="Reproducir música">
+        
+        <audio id="audioPlayer" loop>
+            <source src="https://raw.githubusercontent.com/emvelar/musica-boda/main/RolaPyB.mp3" type="audio/mpeg">
+        </audio>
+        
+        <div class="message" id="mensaje"></div>
+    </div>
+
+    <script>
+        const imagen = document.getElementById('miImagen');
+        const audio = document.getElementById('audioPlayer');
+        const mensaje = document.getElementById('mensaje');
+        let reproduciendo = false;
+
+        imagen.addEventListener('click', function() {
+            if (reproduciendo) {
+                audio.pause();
+                reproduciendo = false;
+                mensaje.textContent = 'Música pausada';
+            } else {
+                audio.play();
+                reproduciendo = true;
+                mensaje.textContent = 'Reproduciendo música...';
+            }
+        });
+    </script>
+</body>
+</html>
