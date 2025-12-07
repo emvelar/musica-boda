@@ -13,6 +13,7 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
         }
         
         .container {
@@ -24,25 +25,25 @@
             height: 300px;
             cursor: pointer;
             border-radius: 50%;
-            transition: transform 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
         
         img:hover {
             transform: scale(1.05);
         }
         
-        .disco-girando {
-            animation: girar 3s linear infinite;
+        img.girando {
+            animation: spin 3s linear infinite;
         }
         
-        @keyframes girar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
         
         #audioPlayer {
-            margin-top: 20px;
             display: none;
         }
         
@@ -50,7 +51,6 @@
             margin-top: 20px;
             font-size: 18px;
             color: white;
-            font-family: Arial, sans-serif;
             font-weight: bold;
         }
     </style>
@@ -58,7 +58,7 @@
 <body>
     <div class="container">
         <img src="https://raw.githubusercontent.com/emvelar/musica-boda/main/21disco.png" 
-             id="miImagen" 
+             id="disco" 
              alt="Reproducir música">
         
         <audio id="audioPlayer" loop>
@@ -69,20 +69,20 @@
     </div>
 
     <script>
-        const imagen = document.getElementById('miImagen');
+        const disco = document.getElementById('disco');
         const audio = document.getElementById('audioPlayer');
         const mensaje = document.getElementById('mensaje');
         let reproduciendo = false;
 
-        imagen.addEventListener('click', function() {
+        disco.addEventListener('click', function() {
             if (reproduciendo) {
                 audio.pause();
-                imagen.classList.remove('disco-girando');
+                disco.classList.remove('girando');
                 reproduciendo = false;
                 mensaje.textContent = 'Música pausada';
             } else {
                 audio.play();
-                imagen.classList.add('disco-girando');
+                disco.classList.add('girando');
                 reproduciendo = true;
                 mensaje.textContent = 'Reproduciendo música...';
             }
